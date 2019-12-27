@@ -42,7 +42,7 @@ class PerfilController {
     return perfil
   }
 
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, request, response, auth }) {
     const perfil = await Perfil.findOrFail(params.id)
     if(perfil.user_id !== auth.user.id){
       return response.status(401).send({ error: 'Não autorizado'})
